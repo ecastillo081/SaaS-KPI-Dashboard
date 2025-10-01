@@ -35,7 +35,7 @@ import pandas as pd
 # ============================
 @dataclass
 class SubsConfig:
-    workbook_path: str = "saas_kpi_seeds.xlsx"
+    workbook_path: str = "../data/saas_kpi_seeds.xlsx"
     customers_sheet: str = "customers"
     subs_sheet: str = "subscriptions"
     random_seed: int = 123

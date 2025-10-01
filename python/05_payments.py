@@ -29,7 +29,7 @@ import pandas as pd
 
 @dataclass
 class PaymentsConfig:
-    workbook_path: str = "saas_kpi_seeds.xlsx"
+    workbook_path: str = "../data/saas_kpi_seeds.xlsx"
     invoices_sheet: str = "invoices"
     payments_sheet: str = "payments"
     random_seed: int = 789

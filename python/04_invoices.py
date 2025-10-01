@@ -33,7 +33,7 @@ import pandas as pd
 
 @dataclass
 class InvoicesConfig:
-    workbook_path: str = "saas_kpi_seeds.xlsx"
+    workbook_path: str = "../data/saas_kpi_seeds.xlsx"
     customers_sheet: str = "customers"
     subs_sheet: str = "subscriptions"
     invoices_sheet: str = "invoices"

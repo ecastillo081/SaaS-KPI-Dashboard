@@ -40,7 +40,7 @@ import pandas as pd
 # ============================
 @dataclass
 class CustomersConfig:
-    output_path: str = "saas_kpi_seeds.xlsx"  # Excel workbook name
+    output_path: str = "../data/saas_kpi_seeds.xlsx"  # Excel workbook name
     sheet_name: str = "customers"
     random_seed: int = 42
 
