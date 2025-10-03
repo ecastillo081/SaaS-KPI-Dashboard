@@ -1,4 +1,4 @@
-create or replace view stg.churn as
+create or replace view stg.mrr_change as
     with monthly_events as (
         select
             date_trunc('month',event_date)::date as month_start,
@@ -7,6 +7,11 @@ create or replace view stg.churn as
         from raw.events
     ),
         grouped_mrr as (select month_start,
+                               case
+                                   when event_type in ('new') and delta_mrr > 0
+                                       then delta_mrr
+                                   else 0
+                                   end as new_mrr,
                                case
                                    when event_type in ('upgrade', 'reactivation') and delta_mrr > 0
                                        then delta_mrr
@@ -25,6 +30,7 @@ create or replace view stg.churn as
                         from monthly_events)
 select
     d.month_start,
+    coalesce(sum(g.new_mrr),0) as new_mrr,
     coalesce(sum(g.expansion_mrr),0) as expansion_mrr,
     coalesce(sum(g.contraction_mrr),0) as contraction_mrr,
     coalesce(sum(g.churn_mrr),0) as churn_mrr

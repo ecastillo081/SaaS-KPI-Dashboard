@@ -21,6 +21,6 @@ create or replace view stg.nrr_grr as
                 else 1.0 - (1.0 - (churn_mrr / beg_mrr))
             end as churn_rate
     from starting_mrr as s
-        left join stg.churn as c
+        left join stg.mrr_change as mc
             using(month_start)
 order by s.month_start
