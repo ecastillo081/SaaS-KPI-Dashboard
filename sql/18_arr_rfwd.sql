@@ -7,6 +7,7 @@ create or replace view stg.arr_rfwd as
         contraction_arr,
         churn_arr,
         arr as end_arr
-from stg.arr as a
+from stg.date_spine as d
+left join stg.arr as a using(month_start)
 left join stg.arr_change as ac using (month_start)
 order by month_start
