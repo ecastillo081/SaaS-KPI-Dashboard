@@ -15,7 +15,11 @@ create or replace view stg.nrr_grr as
         case
             when beg_mrr = 0 then 0
     else (beg_mrr - churn_mrr - contraction_mrr + expansion_mrr)/ beg_mrr
-            end as nrr
+            end as nrr,
+        case
+            when beg_mrr = 0 then 0
+                else 1.0 - (1.0 - (churn_mrr / beg_mrr))
+            end as churn_rate
     from starting_mrr as s
         left join stg.churn as c
             using(month_start)
