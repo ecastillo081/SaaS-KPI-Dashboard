@@ -5,7 +5,7 @@ from supabase.credentials import username, password, host, port, database
 connection_string = f"postgresql://{username}:{password}@{host}:{port}/{database}?sslmode=require"
 engine = create_engine(connection_string)
 
-sql_path = "../sql/18_arr_rfwd.sql"
+sql_path = "../sql/18_arr_revenue_bridge.sql"
 
 # Load SQL file
 with open(sql_path) as f:

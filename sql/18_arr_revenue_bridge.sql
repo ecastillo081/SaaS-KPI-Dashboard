@@ -1,4 +1,4 @@
-create or replace view stg.arr_rfwd as
+create or replace view stg.arr_revenue_bridge as
     select
         month_start,
         coalesce(lag(arr) over (order by month_start), 0) as beg_arr,

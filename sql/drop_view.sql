@@ -1,2 +1,2 @@
 -- drop view
-drop view public.arr;
+drop view stg.arr_rfwd;
