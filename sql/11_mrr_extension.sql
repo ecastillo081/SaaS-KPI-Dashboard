@@ -11,18 +11,25 @@ select
     m.month_end,
     s.subscription_id,
     s.customer_id,
+    segment,
+    acquisition_channel,
     s.plan,
     s.price_mrr
 from months as m
 join raw.subscriptions as s
     on s.start_date <= m.month_end
-    and (s.end_date is null or s.end_date >= m.month_end))
+    and (s.end_date is null or s.end_date >= m.month_end)
+left join raw.customers as c
+    using(customer_id)
+)
 
 select
     month_start,
     month_end,
     subscription_id,
     customer_id,
+    segment,
+    acquisition_channel,
     plan,
     price_mrr
 from active_subscriptions

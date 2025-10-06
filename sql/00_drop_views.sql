@@ -1,0 +1,17 @@
+-- drop views
+-- drop view stg.channel_kpi;
+-- drop view stg.segment_kpi;
+-- drop view stg.kpi;
+-- drop view stg.cac_ltv;
+-- drop view stg.arr_revenue_bridge;
+-- drop view stg.nrr_grr;
+-- drop view stg.arr;
+-- drop view stg.retention_cohorts;
+-- drop view stg.active_customers;
+-- drop view stg.mrr;
+-- drop view stg.mrr_extension;
+-- drop view stg.arr_change;
+-- drop view stg.mrr_change;
+-- -- drop view stg.churn;
+-- drop view stg.date_spine;
+select * from raw.customers;
