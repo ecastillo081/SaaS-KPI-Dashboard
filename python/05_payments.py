@@ -1,5 +1,5 @@
 """
-Generate or update the `payments` sheet in saas_kpi_seeds.xlsx (Phase 1 / Table 5).
+Generate or update the `payments` sheet in saas_kpi_data.xlsx (Phase 1 / Table 5).
 
 Design:
 - Reads `invoices` to emit cash receipts applied to each invoice (AR → cash).
@@ -29,7 +29,7 @@ import pandas as pd
 
 @dataclass
 class PaymentsConfig:
-    workbook_path: str = "../data/saas_kpi_seeds.xlsx"
+    workbook_path: str = "../data/saas_kpi_data.xlsx"
     invoices_sheet: str = "invoices"
     payments_sheet: str = "payments"
     random_seed: int = 789

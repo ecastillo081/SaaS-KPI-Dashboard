@@ -8,7 +8,7 @@ from supabase.credentials import username, password, host, port, database
 # CONFIG
 # =========================
 # Excel workbook path
-EXCEL_PATH = "../data/saas_kpi_seeds.xlsx"  # revise as needed
+EXCEL_PATH = "../data/saas_kpi_data.xlsx"  # revise as needed
 
 # Target schema in Supabase/Postgres
 PUSH_SCHEMA = "raw"

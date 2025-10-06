@@ -2,7 +2,7 @@
 Generate an Excel workbook with a `customers` sheet for a SaaS KPI portfolio project.
 
 What this script does (Phase 1 / Table 1):
-- Creates or updates an Excel file `saas_kpi_seeds.xlsx`.
+- Creates or updates an Excel file `saas_kpi_data.xlsx`.
 - Writes a `customers` sheet with 100 rows by default (tunable).
 - Enforces clean primary keys and realistic business rules.
 - Provides deterministic synthesis via a random seed.
@@ -40,7 +40,7 @@ import pandas as pd
 # ============================
 @dataclass
 class CustomersConfig:
-    output_path: str = "../data/saas_kpi_seeds.xlsx"  # Excel workbook name
+    output_path: str = "../data/saas_kpi_data.xlsx"  # Excel workbook name
     sheet_name: str = "customers"
     random_seed: int = 42
 

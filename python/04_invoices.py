@@ -1,5 +1,5 @@
 """
-Generate or update the `invoices` sheet in saas_kpi_seeds.xlsx (Phase 1 / Table 4).
+Generate or update the `invoices` sheet in saas_kpi_data.xlsx (Phase 1 / Table 4).
 
 Design:
 - Reads `customers` and `subscriptions` (respects FKs and your pricing/edits).
@@ -33,7 +33,7 @@ import pandas as pd
 
 @dataclass
 class InvoicesConfig:
-    workbook_path: str = "../data/saas_kpi_seeds.xlsx"
+    workbook_path: str = "../data/saas_kpi_data.xlsx"
     customers_sheet: str = "customers"
     subs_sheet: str = "subscriptions"
     invoices_sheet: str = "invoices"

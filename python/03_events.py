@@ -1,5 +1,5 @@
 """
-Generate or update the `events` sheet in saas_kpi_seeds.xlsx (Phase 1 / Table 3).
+Generate or update the `events` sheet in saas_kpi_data.xlsx (Phase 1 / Table 3).
 
 This derives lifecycle events from `subscriptions` so NRR/GRR and ARR bridge components
 (expansion, contraction, churn, new logo, reactivation) can be computed cleanly.
@@ -34,7 +34,7 @@ import pandas as pd
 
 @dataclass
 class EventsConfig:
-    workbook_path: str = "../data/saas_kpi_seeds.xlsx"
+    workbook_path: str = "../data/saas_kpi_data.xlsx"
     customers_sheet: str = "customers"
     subs_sheet: str = "subscriptions"
     events_sheet: str = "events"

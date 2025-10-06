@@ -1,5 +1,5 @@
 """
-Generate or update the `subscriptions` sheet in saas_kpi_seeds.xlsx (Phase 1 / Table 2).
+Generate or update the `subscriptions` sheet in saas_kpi_data.xlsx (Phase 1 / Table 2).
 
 What this script does:
 - Reads `customers` from the workbook to enforce FK integrity.
@@ -35,7 +35,7 @@ import pandas as pd
 # ============================
 @dataclass
 class SubsConfig:
-    workbook_path: str = "../data/saas_kpi_seeds.xlsx"
+    workbook_path: str = "../data/saas_kpi_data.xlsx"
     customers_sheet: str = "customers"
     subs_sheet: str = "subscriptions"
     random_seed: int = 123
