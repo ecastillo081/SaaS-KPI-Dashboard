@@ -32,3 +32,6 @@ The Mode dashboard includes four key visuals:
 ## Tech Stack
 * **SQL** (Postgres-compatible) for metric calculations
 * **Mode Analytics** for data exploration and dashboarding
+
+## Mode Report
+You can view the live Mode report [here](https://app.mode.com/castillo/reports/f3ca2fa40b7e/runs/9134d20d2458).
