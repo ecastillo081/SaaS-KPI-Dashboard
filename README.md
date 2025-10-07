@@ -34,4 +34,4 @@ The Mode dashboard includes four key visuals:
 * **Mode Analytics** for data exploration and dashboarding
 
 ## Mode Report
-📄 [Download Dashboard PDF](reports/SaaS%KPI%Dashboard.pdf)
+📄 [Download Dashboard PDF](reports/SaaS%20KPI%20Dashboard.pdf)
