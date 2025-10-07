@@ -1,11 +1,21 @@
-venv/
-.env
-
-.idea
-
 supabase
 
 python
 
-/.venv/
 /python/
+
+# Environment files
+.env
+
+# IDE / Editor settings
+.idea/
+
+# Virtual environment
+.venv/
+
+__pycache__/
+*.pyc
+
+# OS junk
+.DS_Store
+Thumbs.db
