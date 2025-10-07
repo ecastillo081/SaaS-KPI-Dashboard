@@ -1,4 +1,4 @@
-# Strategic Finance Dashboard – SaaS KPIs & Growth Drivers
+# SaaS KPIs & Growth Drivers
 
 ## Overview
 This project showcases a full **end-to-end SaaS financial analytics pipeline**, built entirely with SQL and Mode Analytics.
