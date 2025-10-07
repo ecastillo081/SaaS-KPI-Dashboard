@@ -34,4 +34,4 @@ The Mode dashboard includes four key visuals:
 * **Mode Analytics** for data exploration and dashboarding
 
 ## Mode Report
-You can view the live Mode report [here](https://app.mode.com/castillo/reports/f3ca2fa40b7e/runs/9fb5a2df2acf).
+📄 [Download Dashboard PDF](reports/SaaS%KPI%Dashboard.pdf)
