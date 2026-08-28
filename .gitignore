@@ -1,7 +1,7 @@
 # Local credentials — never commit
-supabase/credentials.py
 .env
 .env.*
+*.env
 
 # IDE / Editor settings
 .idea/
@@ -10,8 +10,17 @@ supabase/credentials.py
 .venv/
 venv/
 
+# Python caches
 __pycache__/
 *.pyc
+*.pyo
+
+# Generated warehouse and analytics outputs
+warehouse/*.duckdb
+warehouse/*.duckdb.wal
+outputs/*.csv
+outputs/charts/*.png
+case-study/_rendered.html
 
 # OS junk
 .DS_Store

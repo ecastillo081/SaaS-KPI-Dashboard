@@ -1,29 +1,33 @@
-create or replace view stg.mrr_extension as
-with months as (
-select
-    ds.month_start,
-    (ds.month_start + interval '1 month - 1 day')::date as month_end
-    from stg.date_spine as ds),
-
-active_subscriptions as (
-select
-    m.month_start,
-    m.month_end,
-    s.subscription_id,
-    s.customer_id,
-    segment,
-    acquisition_channel,
-    s.plan,
-    s.price_mrr
-from months as m
-join raw.subscriptions as s
-    on s.start_date <= m.month_end
-    and (s.end_date is null or s.end_date >= m.month_end)
-left join raw.customers as c
-    using(customer_id)
+-- Subscription-month grain: subscriptions active at month-end (capped at as_of_date).
+-- Active if start_date <= month_end AND (end_date is null OR end_date >= month_end).
+CREATE OR REPLACE VIEW stg.mrr_extension AS
+WITH months AS (
+    SELECT
+        ds.month_start,
+        LEAST(
+            last_day(ds.month_start),
+            (SELECT as_of_date FROM stg.assumptions)
+        )::DATE AS month_end
+    FROM stg.date_spine AS ds
+),
+active_subscriptions AS (
+    SELECT
+        m.month_start,
+        m.month_end,
+        s.subscription_id,
+        s.customer_id,
+        c.segment,
+        c.acquisition_channel,
+        s.plan,
+        s.price_mrr::DECIMAL(18, 4) AS price_mrr
+    FROM months AS m
+    INNER JOIN raw.subscriptions AS s
+        ON s.start_date <= m.month_end
+        AND (s.end_date IS NULL OR s.end_date >= m.month_end)
+    LEFT JOIN raw.customers AS c
+        USING (customer_id)
 )
-
-select
+SELECT
     month_start,
     month_end,
     subscription_id,
@@ -32,5 +36,4 @@ select
     acquisition_channel,
     plan,
     price_mrr
-from active_subscriptions
-order by month_start, subscription_id
+FROM active_subscriptions;

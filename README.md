@@ -1,59 +1,105 @@
 # SaaS Growth Economics
 
-Self-directed portfolio case using **synthetic** subscription data. This is not a client engagement and does not report results for a live company.
+Self-directed portfolio project using **synthetic** subscription data. This is not a client engagement and does not describe results for a live company.
 
 ## Business Question
 
-How do ARR growth, retention, and acquisition efficiency interact in a subscription business, and what should finance review together in management reporting?
+How should Finance evaluate whether recurring-revenue growth is durable when ARR, retention, customer mix, and acquisition activity are moving in different directions?
 
-## Context / Data
+## Architecture
 
-The workbook in `data/saas_kpi_data.xlsx` is synthetic and structured to resemble a SaaS company (customers, subscriptions, events, invoices, and payments).
+```
+data/saas_kpi_data.xlsx
+        → DuckDB (warehouse/saas_kpi.duckdb)
+        → SQL finance models (sql/)
+        → validation controls
+        → local outputs and charts
+        → HTML / PDF case study (case-study/)
+```
 
-SQL views in `sql/` calculate:
+Reproduction is fully local:
 
-- MRR and ARR
-- NRR and GRR
-- CAC, LTV, ARPU, and payback
-- ARR bridge (new, expansion, contraction, churn)
-- Cohort, segment, and channel views
-
-## Approach
-
-Postgres-compatible SQL defines the metrics. Python can load the Excel file and apply the SQL views to a local or hosted Postgres database. Mode Analytics was used to present the management dashboard.
-
-Database credentials must come from environment variables (`PGUSER`, `PGPASSWORD`, `PGHOST`, `PGPORT`, `PGDATABASE`). Do not commit passwords or connection strings.
-
-## Key Findings
-
-Findings below are from the synthetic dataset, not from a real business:
-
-- NRR above 100% means expansion offset churn in this model.
-- CAC payback is about 6–8 months under the model's assumptions.
-- ARR should be read with the bridge (new / expansion / contraction / churn), not as a single growth rate.
-
-## Recommendation
-
-Review ARR bridge, NRR/GRR, and payback together before treating growth as efficient.
-
-## Visuals
-
-The dashboard PDF includes:
-
-1. ARR bridge
-2. NRR and GRR trend
-3. MRR and ARR trend
-4. Executive KPI table
-
-[Download the dashboard PDF](reports/SaaS%20KPI%20Dashboard.pdf)
-
-## Technical Methodology
-
-All metric logic lives in `sql/`. `queries/run_queries.py` applies those files. `supabase/excel_to_supabase.py` loads Excel into a `raw` schema. `supabase/db.py` reads connection details from the environment.
+- no credentials
+- no environment variables
+- no cloud database
+- no Mode Analytics
+- no Supabase
 
 ## Reproduce
 
-1. Set `PGUSER`, `PGPASSWORD`, `PGHOST`, `PGPORT`, and `PGDATABASE`.
-2. Load `data/saas_kpi_data.xlsx` if you are using the Python loader.
-3. Run the SQL files in `sql/` in filename order.
-4. Open the dashboard PDF for the management view.
+```bash
+python -m pip install -r requirements.txt
+python build.py
+python build.py --report
+```
+
+| Command | What it does |
+|---|---|
+| `python build.py` | Load the golden workbook, build DuckDB models, run controls, write `outputs/*.csv` |
+| `python build.py --report` | Same analytics build, then generate charts and the case-study PDF |
+
+Paths are repo-relative. Chrome or Edge is used only for `--report` PDF printing.
+
+### Frozen as-of date
+
+Default analysis cutoff: **2025-09-30**.
+
+Optional override:
+
+```bash
+python build.py --as-of YYYY-MM-DD
+python build.py --report --as-of YYYY-MM-DD
+```
+
+Portfolio results do not depend on the system calendar.
+
+## Case study
+
+[Download the case-study PDF](case-study/SaaS_Growth_Economics_Case_Study.pdf)
+
+Source:
+
+- `case-study/saas-growth-economics.html`
+- `case-study/case-study.css`
+
+## Metric definitions
+
+| Metric | Definition |
+|---|---|
+| MRR | Month-end snapshot of active subscription `price_mrr` |
+| ARR | Run-rate ARR = MRR × 12 (not recognized revenue) |
+| New MRR | `event_type = new` |
+| Expansion MRR | `event_type = upgrade` only |
+| Reactivation MRR | `event_type = reactivation` — **separate from expansion** |
+| Contraction MRR | `event_type = downgrade` |
+| Churn MRR | `event_type = churn` |
+| GRR | (Beginning MRR − contraction − churn) / beginning MRR |
+| NRR | (Beginning MRR − contraction − churn + expansion) / beginning MRR. Excludes new and reactivation |
+| CAC payback | CAC per new customer ÷ (ARPU × 80% gross margin) |
+
+Gross margin is a modeled assumption of 80%.
+
+## Validated conclusions
+
+From the golden fixture through **2025-09-30**:
+
+- ARR peaked at **$73,560** in July 2025 and ended September at **$59,400**
+- Mean NRR / GRR approximately **95.5%**
+- True expansion MRR was **$0**
+- Corrected mean CAC payback approximately **11.1 months**
+- Growth relied heavily on new-logo acquisition, with reactivation as a smaller offset
+
+These conclusions are from synthetic data and do not describe a real company.
+
+## Repository layout
+
+| Path | Role |
+|---|---|
+| `data/saas_kpi_data.xlsx` | Golden synthetic fixture |
+| `sql/` | DuckDB finance models |
+| `src/` | Load, build, validate, chart, and PDF helpers |
+| `build.py` | Orchestrator |
+| `outputs/` | Generated CSVs and charts (gitignored except `.gitkeep`) |
+| `warehouse/` | Generated DuckDB file (gitignored except `.gitkeep`) |
+| `case-study/` | HTML/CSS source and published PDF |
+| `requirements.txt` | `duckdb`, `pandas`, `openpyxl`, `matplotlib`, `pypdf` |
