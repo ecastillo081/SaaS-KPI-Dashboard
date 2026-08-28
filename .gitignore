@@ -1,17 +1,14 @@
-supabase
-
-python
-
-/python/
-
-# Environment files
+# Local credentials — never commit
+supabase/credentials.py
 .env
+.env.*
 
 # IDE / Editor settings
 .idea/
 
 # Virtual environment
 .venv/
+venv/
 
 __pycache__/
 *.pyc

@@ -1,37 +1,59 @@
-# SaaS KPIs & Growth Drivers
+# SaaS Growth Economics
 
-## Overview
-This project showcases a full **end-to-end SaaS financial analytics pipeline**, built entirely with SQL and Mode Analytics.
+Self-directed portfolio case using **synthetic** subscription data. This is not a client engagement and does not report results for a live company.
 
-It models how ARR growth, customer retention, and acquisition efficiency interact to drive company performance.
+## Business Question
 
-## Data Architecture
+How do ARR growth, retention, and acquisition efficiency interact in a subscription business, and what should finance review together in management reporting?
 
-The dataset is **synthetic** but structured to mirror a real subscription business:
-* SQL views calculate key financial metrics:
-   * `mrr_extension`, `mrr`, and `arr` for recurring revenue
-   * `retention_cohorts.sql` and `nrr_grr` for retention and expansion analysis
-   * `cac_ltv` for unit economics (CAC, ARPU, LTV, Payback)
-   * `arr_revenue_bridge` for ARR movement
-   * `kpi.sql` for the final monthly summary table
+## Context / Data
 
-All SQL views are stored in `/sql/` and can be executed in any Postgres-compatible engine or Mode query editor.
+The workbook in `data/saas_kpi_data.xlsx` is synthetic and structured to resemble a SaaS company (customers, subscriptions, events, invoices, and payments).
+
+SQL views in `sql/` calculate:
+
+- MRR and ARR
+- NRR and GRR
+- CAC, LTV, ARPU, and payback
+- ARR bridge (new, expansion, contraction, churn)
+- Cohort, segment, and channel views
+
+## Approach
+
+Postgres-compatible SQL defines the metrics. Python can load the Excel file and apply the SQL views to a local or hosted Postgres database. Mode Analytics was used to present the management dashboard.
+
+Database credentials must come from environment variables (`PGUSER`, `PGPASSWORD`, `PGHOST`, `PGPORT`, `PGDATABASE`). Do not commit passwords or connection strings.
+
+## Key Findings
+
+Findings below are from the synthetic dataset, not from a real business:
+
+- NRR above 100% means expansion offset churn in this model.
+- CAC payback is about 6–8 months under the model's assumptions.
+- ARR should be read with the bridge (new / expansion / contraction / churn), not as a single growth rate.
+
+## Recommendation
+
+Review ARR bridge, NRR/GRR, and payback together before treating growth as efficient.
 
 ## Visuals
-The Mode dashboard includes four key visuals:
-1. **ARR Bridge (Waterfall)** - breaks down growth into New Customers, Expansion, Contraction, and Churn.
-2. **NRR & GRR Trend** – tracks gross and net retention rates month-over-month.
-3. **MRR & ARR Trend** – shows recurring revenue scale and growth trajectory.
-4. **Executive KPI Table** – summarizes ARR, NRR, CAC, LTV, ARPU, and Payback with color-coded health flags.
 
-## Key Takeaways
-* **Retention**: NRR >100% indicates expansion offsetting churn.
-* **Payback**: CAC is recovered in ~6–8 months, signaling efficient growth.
-* **Scalability**: This SQL setup supports segmentation by product, channel, or customer tier.
+The dashboard PDF includes:
 
-## Tech Stack
-* **SQL** (Postgres-compatible) for metric calculations
-* **Mode Analytics** for data exploration and dashboarding
+1. ARR bridge
+2. NRR and GRR trend
+3. MRR and ARR trend
+4. Executive KPI table
 
-## Mode Report
-📄 [Download Dashboard PDF](reports/SaaS%20KPI%20Dashboard.pdf)
+[Download the dashboard PDF](reports/SaaS%20KPI%20Dashboard.pdf)
+
+## Technical Methodology
+
+All metric logic lives in `sql/`. `queries/run_queries.py` applies those files. `supabase/excel_to_supabase.py` loads Excel into a `raw` schema. `supabase/db.py` reads connection details from the environment.
+
+## Reproduce
+
+1. Set `PGUSER`, `PGPASSWORD`, `PGHOST`, `PGPORT`, and `PGDATABASE`.
+2. Load `data/saas_kpi_data.xlsx` if you are using the Python loader.
+3. Run the SQL files in `sql/` in filename order.
+4. Open the dashboard PDF for the management view.

@@ -1,14 +1,13 @@
-from sqlalchemy import create_engine, text
-from supabase.credentials import username, password, host, port, database
 from pathlib import Path
 
-# --- Create database engine ---
-connection_string = f"postgresql://{username}:{password}@{host}:{port}/{database}?sslmode=require"
-engine = create_engine(connection_string)
+from sqlalchemy import create_engine, text
 
-# --- Define SQL directory and file order ---
+from supabase.db import postgres_url
+
+engine = create_engine(postgres_url())
+
 sql_dir = Path("../sql")
-sql_files = sorted(sql_dir.glob("*.sql"))  # sorts alphabetically
+sql_files = sorted(sql_dir.glob("*.sql"))
 
 for sql_path in sql_files:
     print(f"Executing: {sql_path.name}")

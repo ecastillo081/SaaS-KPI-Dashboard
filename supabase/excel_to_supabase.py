@@ -2,7 +2,7 @@ import re
 import pandas as pd
 from slugify import slugify
 from sqlalchemy import create_engine, text
-from supabase.credentials import username, password, host, port, database
+from supabase.db import postgres_url
 
 # =========================
 # CONFIG
@@ -80,9 +80,7 @@ if not dataframes:
 # =========================
 # PUSH TO SUPABASE
 # =========================
-connection_string = (
-    f"postgresql://{username}:{password}@{host}:{port}/{database}?sslmode=require"
-)
+connection_string = postgres_url()
 engine = create_engine(connection_string, pool_pre_ping=True, future=True)
 
 # Ensure schema exists
