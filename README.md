@@ -103,3 +103,7 @@ These conclusions are from synthetic data and do not describe a real company.
 | `warehouse/` | Generated DuckDB file (gitignored except `.gitkeep`) |
 | `case-study/` | HTML/CSS source and published PDF |
 | `requirements.txt` | `duckdb`, `pandas`, `openpyxl`, `matplotlib`, `pypdf` |
+
+---
+
+**More finance projects and management-ready case studies: [efrainfinance.com](https://efrainfinance.com/)**
