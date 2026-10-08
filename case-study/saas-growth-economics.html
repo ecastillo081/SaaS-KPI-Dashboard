@@ -16,13 +16,13 @@
         <span>FP&amp;A / SaaS Finance / Finance Analytics Case Study</span>
       </div>
       <h1>SaaS Growth Economics</h1>
-      <p class="subtitle">Diagnosing recurring-revenue growth, retention, and acquisition efficiency</p>
+      <p class="subtitle">Assessing ARR growth, retention, and customer acquisition economics</p>
       <div class="badge">Self-directed portfolio project using synthetic data</div>
     </header>
 
     <div class="question-box">
       <div class="question-label">Business Question</div>
-      <p>How should Finance evaluate whether recurring-revenue growth is durable when ARR, retention, customer mix, and acquisition activity are moving in different directions?</p>
+      <p>Is ARR growth sustainable given current retention, customer mix, and acquisition economics?</p>
     </div>
 
     <div class="context-grid">
@@ -46,8 +46,8 @@
 
     <div class="headline">
       <div class="headline-main">
-        <div class="eyebrow">Growth diagnosis</div>
-        <p>ARR peaked at {{PEAK_ARR}} in {{PEAK_MONTH}}, then declined approximately 19% to {{ENDING_ARR}} by {{END_MONTH}}. There was no true expansion engine in this fixture.</p>
+        <div class="eyebrow">Key finding</div>
+        <p>ARR peaked at {{PEAK_ARR}} in {{PEAK_MONTH}} and declined approximately 19% to {{ENDING_ARR}} by {{END_MONTH}}. Growth depended on new customers and reactivations; the data includes no upgrade-driven expansion revenue.</p>
       </div>
       <div class="headline-stat">
         <div class="big">{{PEAK_ARR}}</div>
@@ -62,11 +62,11 @@
 
     <div class="figure-block chart-sm">
       <img src="{{CHART_ARR_BRIDGE}}" alt="ARR waterfall for April through September 2025 with New, Expansion, Reactivation, Contraction, and Churn." />
-      <div class="figure-caption">Figure 2. ARR bridge, April–September 2025. Expansion and contraction are {{EXPANSION_ARR}} because the fixture contains no upgrades or downgrades. Reactivation is shown separately from expansion.</div>
+      <div class="figure-caption">Figure 2. ARR bridge, April–September 2025. Expansion and contraction are zero because the data contains no upgrades or downgrades. Reactivation is presented separately from expansion.</div>
     </div>
 
     <div class="takeaway">
-      <strong>FP&amp;A diagnosis:</strong> Growth depended on new-logo acquisition, with reactivation providing a smaller offset and no true expansion. From April through September 2025, $32.9k of new ARR was offset by $32.9k of churn ARR; $5.0k of reactivation was the only net bridge contribution. This is an acquisition-dependent growth engine with limited recurring-revenue durability.
+      <strong>FP&amp;A assessment:</strong> Growth relied primarily on new-customer acquisition. From April through September 2025, $32.9k of new ARR was offset by $32.9k of churn ARR; $5.0k of reactivation produced the net increase. Without stronger retention or expansion revenue, maintaining ARR will require continued customer acquisition.
     </div>
 
     <div class="slim-footer">
@@ -81,11 +81,11 @@
         <strong>Efrain Castillo</strong>
         <span>SaaS Growth Economics</span>
       </div>
-      <h1 class="section-title">Retention never generated net expansion</h1>
-      <p class="subtitle">Revenue quality of the beginning recurring-revenue base</p>
+      <h1 class="section-title">Retention does not support growth without continued acquisition</h1>
+      <p class="subtitle">Performance of the beginning recurring-revenue base</p>
     </header>
 
-    <p class="note">NRR and GRR are identical in this fixture. There were no true upgrades and no contractions, so movement inside the beginning base is churn only. New logos and reactivations are excluded from both rates.</p>
+    <p class="note">NRR and GRR are identical because the data contains no upgrades or downgrades; churn is the only movement within the beginning recurring-revenue base. New customers and reactivations are excluded from both measures.</p>
 
     <div class="figure-block chart-md">
       <img src="{{CHART_NRR}}" alt="Monthly NRR and GRR, which overlap, with a 100 percent reference line and August 2025 low." />
@@ -101,23 +101,23 @@
       <div class="panel risk">
         <h2>Risks</h2>
         <ul>
-          <li>Mean NRR of {{MEAN_NRR}} means the existing base shrinks unless new logos or reactivation replace leakage.</li>
-          <li>August NRR of {{AUG_NRR}} shows how quickly the beginning base can compress when churn spikes. Slower new-logo contribution then leaves less offset at the company level.</li>
-          <li>A model dependent on acquisition must continually replace recurring-revenue leakage. That is a less durable plan than expansion-led growth.</li>
+          <li>Mean NRR of {{MEAN_NRR}} indicates that the beginning recurring-revenue base contracts without new customers or reactivation.</li>
+          <li>August NRR of {{AUG_NRR}} shows how quickly elevated churn can reduce recurring revenue.</li>
+          <li>A growth plan that depends on acquisition must continually replace churned ARR, increasing the importance of acquisition efficiency.</li>
         </ul>
       </div>
       <div class="panel opportunity">
         <h2>Opportunities</h2>
         <ul>
-          <li>A real expansion / upsell motion would be the cleanest way to lift NRR above GRR, if product and customer behavior support it.</li>
-          <li>Finance should segment churn by channel, customer segment, cohort, and tenure before increasing acquisition spend.</li>
-          <li>Reactivation helped, but it is not a substitute for retaining the beginning base or building expansion.</li>
+          <li>Developing an expansion and upsell motion could improve NRR if product adoption and customer demand support it.</li>
+          <li>Segment churn by channel, customer segment, cohort, and tenure before increasing acquisition spending.</li>
+          <li>Reactivation provides some recovery, but it does not replace stronger retention or expansion.</li>
         </ul>
       </div>
     </div>
 
     <div class="takeaway" style="margin-top:8px;">
-      <strong>Interpretation:</strong> These are analytical recommendations for how Finance should review the book, not actions that were implemented. Signup-cohort dollar retention can exceed 100% here because some subscriptions start after signup month and some logos later reactivate; it is not NRR and is not shown as a heatmap for that reason.
+      <strong>Method note:</strong> NRR and GRR measure performance of the beginning recurring-revenue base and exclude new customers and reactivations. Signup-cohort dollar retention is not shown because later subscription starts and reactivations can push it above 100%, making it unsuitable as an NRR measure.
     </div>
 
     <div class="slim-footer">
@@ -133,22 +133,22 @@
         <span>SaaS Growth Economics</span>
       </div>
       <h1 class="section-title">Acquisition efficiency requires tighter investment discipline</h1>
-      <p class="subtitle">CAC payback uses monthly contribution margin: CAC ÷ (ARPU × 80% gross margin)</p>
+      <p class="subtitle">Estimated CAC payback = assigned CAC ÷ (ARPU × 80% gross margin)</p>
     </header>
 
     <div class="two-charts">
       <div class="figure-block">
         <img src="{{CHART_PAYBACK}}" alt="Monthly CAC payback in months with a mean near 11 months." />
-        <div class="figure-caption">Figure 5. Corrected CAC payback. Mean {{MEAN_PAYBACK}} months. Assigned customer CAC, not GL marketing spend.</div>
+        <div class="figure-caption">Figure 5. Estimated CAC payback. Mean {{MEAN_PAYBACK}} months. CAC is based on assigned customer acquisition cost, not GL marketing spend.</div>
       </div>
       <div class="figure-block">
         <img src="{{CHART_ARPU}}" alt="ARPU declining from May 2025 to September 2025." />
-        <div class="figure-caption">Figure 6. Blended ARPU fell from {{MAY_ARPU}} in May 2025 to {{LATEST_ARPU}} in {{END_MONTH}}, reducing contribution dollars available to recover CAC.</div>
+        <div class="figure-caption">Figure 6. Blended ARPU fell from {{MAY_ARPU}} in May 2025 to {{LATEST_ARPU}} in {{END_MONTH}}, reducing the contribution available to recover CAC.</div>
       </div>
     </div>
 
     <div class="section">
-      <h2>Channel snapshot (interpret with small-sample caution)</h2>
+      <h2>Channel snapshot</h2>
       <table class="metrics-table">
         <thead>
           <tr>
@@ -156,43 +156,43 @@
             <th style="text-align:right;">New logos</th>
             <th style="text-align:right;">Avg assigned CAC</th>
             <th style="text-align:right;">Sep ARPU</th>
-            <th style="text-align:right;">Payback proxy</th>
+            <th style="text-align:right;">EST. PAYBACK</th>
           </tr>
         </thead>
         <tbody>
           {{CHANNEL_ROWS}}
         </tbody>
       </table>
-      <p class="table-note">Payback proxy = average assigned CAC ÷ (September channel ARPU × 80% gross margin). Useful for mix discussion, not a vintage payback curve. Outbound and Partner samples are small.</p>
+      <p class="table-note">Estimated payback = average assigned CAC ÷ (September channel ARPU × 80% gross margin). Use this measure for relative channel comparison, not as a vintage payback curve. Partner and Outbound have small samples.</p>
     </div>
 
     <div class="actions">
-      <h2>Management actions for Finance to challenge</h2>
+      <h2>Recommended actions</h2>
       <ol>
-        <li>Separate the forecast into beginning-base retention, new-logo acquisition, reactivation, and expansion so growth is not treated as a single rate.</li>
-        <li>Investigate churn concentration by segment, channel, and tenure before increasing acquisition spend.</li>
-        <li>Establish an explicit expansion / upsell driver rather than relying on new logos to replace leakage.</li>
-        <li>Use CAC payback thresholds that update as ARPU and retention change; do not freeze an 11-month average as a permanent hurdle.</li>
+        <li>Separate the forecast into beginning-base retention, new customers, reactivation, and expansion rather than applying a single growth rate.</li>
+        <li>Analyze churn by customer segment, channel, cohort, and tenure before increasing acquisition spending.</li>
+        <li>Add an explicit expansion assumption to the forecast instead of relying on new customers to replace churned ARR.</li>
+        <li>Update CAC payback guardrails as ARPU, gross margin, and retention change; do not rely on a static portfolio average.</li>
       </ol>
     </div>
 
     <div class="split-notes">
       <div class="panel implications">
-        <h2>What this book is telling Finance</h2>
+        <h2>Management implications</h2>
         <ul>
-          <li>Headline ARR growth through mid-2025 masked a missing expansion engine.</li>
-          <li>Falling ARPU lengthens effective payback even when monthly CAC is not rising.</li>
-          <li>Paid acquisition is the largest logo source and has the highest payback proxy in this mix.</li>
+          <li>ARR growth through July masked the absence of upgrade-driven expansion revenue.</li>
+          <li>Declining ARPU increases CAC payback even when acquisition cost is unchanged.</li>
+          <li>Paid acquisition is the largest source of new customers and has the longest estimated payback in the current channel mix.</li>
         </ul>
       </div>
       <div class="panel limitations">
         <h2>Limitations</h2>
         <ul>
-          <li>Synthetic data; results do not describe a real company.</li>
-          <li>Frozen window through {{AS_OF_DATE}}.</li>
-          <li>Assigned customer CAC, not GL marketing-spend allocation.</li>
-          <li>No true upgrade/downgrade activity in the fixture.</li>
-          <li>No causal inference and no production deployment.</li>
+          <li>Synthetic data; results do not represent a real company.</li>
+          <li>Analysis is frozen through September 30, 2025.</li>
+          <li>CAC uses assigned customer acquisition cost rather than GL marketing-spend allocation.</li>
+          <li>The data contains no upgrade or downgrade activity.</li>
+          <li>No causal inference or production deployment.</li>
         </ul>
       </div>
     </div>

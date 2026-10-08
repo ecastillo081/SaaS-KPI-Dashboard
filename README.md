@@ -4,7 +4,7 @@ Self-directed portfolio project using **synthetic** subscription data. This is n
 
 ## Business Question
 
-How should Finance evaluate whether recurring-revenue growth is durable when ARR, retention, customer mix, and acquisition activity are moving in different directions?
+Is ARR growth sustainable given current retention, customer mix, and acquisition economics?
 
 ## Architecture
 
@@ -81,13 +81,13 @@ Gross margin is a modeled assumption of 80%.
 
 ## Validated conclusions
 
-From the golden fixture through **2025-09-30**:
+From the synthetic data through **2025-09-30**:
 
 - ARR peaked at **$73,560** in July 2025 and ended September at **$59,400**
 - Mean NRR / GRR approximately **95.5%**
-- True expansion MRR was **$0**
-- Corrected mean CAC payback approximately **11.1 months**
-- Growth relied heavily on new-logo acquisition, with reactivation as a smaller offset
+- Upgrade-driven expansion revenue was **$0**
+- Mean estimated CAC payback approximately **11.1 months**
+- Growth depended on continued customer acquisition, with reactivation as a smaller offset
 
 These conclusions are from synthetic data and do not describe a real company.
 
@@ -95,7 +95,7 @@ These conclusions are from synthetic data and do not describe a real company.
 
 | Path | Role |
 |---|---|
-| `data/saas_kpi_data.xlsx` | Golden synthetic fixture |
+| `data/saas_kpi_data.xlsx` | Validated synthetic source workbook |
 | `sql/` | DuckDB finance models |
 | `src/` | Load, build, validate, chart, and PDF helpers |
 | `build.py` | Orchestrator |
